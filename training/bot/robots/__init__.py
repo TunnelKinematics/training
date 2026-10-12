@@ -1,6 +1,13 @@
-"""Robot definitions. Each robot module exposes a RobotSpec; register it in ROBOTS."""
+"""Robot registry. To add a robot, drop a module in this folder that defines SPEC (a RobotSpec).
 
-from .go2w import GO2W
-from .spec import RobotSpec
+Tasks are registered for every robot found here. Importing this package does not import Isaac Sim.
+"""
 
-ROBOTS: dict[str, RobotSpec] = {"go2w": GO2W}
+import importlib
+import pkgutil
+
+ROBOT_NAMES = sorted(m.name for m in pkgutil.iter_modules(__path__) if m.name != "spec")
+
+
+def get_robot(name: str):
+    return importlib.import_module(f"{__name__}.{name}").SPEC

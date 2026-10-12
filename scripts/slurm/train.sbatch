@@ -1,7 +1,7 @@
 #!/bin/bash
 # Train a policy with RSL-RL PPO.
 # Usage (from repo root): sbatch scripts/slurm/train.sbatch <task> [extra train args...]
-#   sbatch scripts/slurm/train.sbatch Bot-Flat-Go2W-v0 --max_iterations 300
+#   sbatch scripts/slurm/train.sbatch Bot-Flat-go2w-v0 --max_iterations 300
 #SBATCH --job-name=train
 #SBATCH --partition=commons
 #SBATCH --account=av21

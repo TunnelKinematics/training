@@ -20,7 +20,7 @@ import torch  # noqa: E402
 import isaaclab.sim as sim_utils  # noqa: E402
 from isaaclab.assets import Articulation  # noqa: E402
 
-from bot.robots import ROBOTS  # noqa: E402
+from bot.robots import get_robot  # noqa: E402
 
 DT = 0.005
 
@@ -31,7 +31,7 @@ def check(name: str, ok: bool, detail: str) -> bool:
 
 
 def main() -> bool:
-    spec = ROBOTS[args.robot]
+    spec = get_robot(args.robot)
     sim = sim_utils.SimulationContext(sim_utils.SimulationCfg(dt=DT, device=args.device))
     sim_utils.GroundPlaneCfg().func("/World/ground", sim_utils.GroundPlaneCfg())
     robot = Articulation(spec.cfg.replace(prim_path="/World/Robot"))

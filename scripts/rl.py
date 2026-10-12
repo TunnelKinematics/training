@@ -1,7 +1,7 @@
 """Run Isaac Lab's stock RSL-RL train/play scripts with our tasks registered.
 
-    isaaclab_exec -p $REPO_ROOT/scripts/rl.py train --task Bot-Flat-Go2W-v0 --headless
-    isaaclab_exec -p $REPO_ROOT/scripts/rl.py play  --task Bot-Flat-Go2W-Play-v0 --headless --video
+    isaaclab_exec -p $REPO_ROOT/scripts/rl.py train --task Bot-Flat-go2w-v0 --headless
+    isaaclab_exec -p $REPO_ROOT/scripts/rl.py play  --task Bot-Flat-go2w-Play-v0 --headless --video
 
 All arguments after train/play are passed through unchanged. Runs land in $ISAAC_ROOT/runs.
 """

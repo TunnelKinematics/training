@@ -4,17 +4,17 @@ from isaaclab_rl.rsl_rl import RslRlOnPolicyRunnerCfg, RslRlPpoActorCriticCfg, R
 
 
 @configclass
-class FlatPPORunnerCfg(RslRlOnPolicyRunnerCfg):
+class PPORunnerCfg(RslRlOnPolicyRunnerCfg):
     num_steps_per_env = 24
-    max_iterations = 1000
+    max_iterations = 3000
     save_interval = 100
-    experiment_name = "flat"
+    experiment_name = "rough"
     policy = RslRlPpoActorCriticCfg(
         init_noise_std=1.0,
         actor_obs_normalization=False,
         critic_obs_normalization=False,
-        actor_hidden_dims=[256, 128, 128],
-        critic_hidden_dims=[256, 128, 128],
+        actor_hidden_dims=[512, 256, 128],
+        critic_hidden_dims=[512, 256, 128],
         activation="elu",
     )
     algorithm = RslRlPpoAlgorithmCfg(
@@ -31,3 +31,13 @@ class FlatPPORunnerCfg(RslRlOnPolicyRunnerCfg):
         desired_kl=0.01,
         max_grad_norm=1.0,
     )
+
+
+def make_ppo_cfg(robot: str, terrain: str) -> PPORunnerCfg:
+    cfg = PPORunnerCfg()
+    cfg.experiment_name = f"{robot}_{terrain}"
+    if terrain == "flat":
+        cfg.max_iterations = 1000
+        cfg.policy.actor_hidden_dims = [256, 128, 128]
+        cfg.policy.critic_hidden_dims = [256, 128, 128]
+    return cfg

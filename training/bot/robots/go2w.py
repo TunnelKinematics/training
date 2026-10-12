@@ -68,11 +68,13 @@ GO2W_CFG = ArticulationCfg(
     },
 )
 
-GO2W = RobotSpec(
+SPEC = RobotSpec(
     cfg=GO2W_CFG,
     leg_joints=LEG_JOINTS,
     wheel_joints=WHEEL_JOINTS,
     base_body="base",
     wheel_bodies=".*_foot",
     wheel_radius=0.086,
+    max_step_height=0.15,
+    undesired_contact_bodies=".*_thigh",
 )
