@@ -1,0 +1,10 @@
+# Container images and training outputs live on /scratch, never in git
+*.sif
+logs/
+runs/
+outputs/
+__pycache__/
+*.egg-info/
+*.pyc
+.vscode/
+.idea/

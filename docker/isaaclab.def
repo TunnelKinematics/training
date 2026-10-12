@@ -1,0 +1,17 @@
+Bootstrap: docker
+From: nvcr.io/nvidia/isaac-lab:2.3.2
+
+# Isaac Lab image for Slurm/Apptainer clusters.
+# Build (on a node with ~40 GB free local disk; APPTAINER_TMPDIR must NOT be on NFS):
+#   APPTAINER_TMPDIR=/tmp/$USER-apptainer apptainer build isaac-lab_2.3.2.sif docker/isaaclab.def
+# Our own code is NOT baked in: it is bind-mounted and installed at runtime.
+
+%environment
+    export ACCEPT_EULA=Y
+    export PRIVACY_CONSENT=Y
+    export OMNI_KIT_ACCEPT_EULA=YES
+    export LC_ALL=C.UTF-8
+    export LANG=C.UTF-8
+
+%labels
+    Description Isaac Lab 2.3.2 for wheeled-quadruped locomotion training
